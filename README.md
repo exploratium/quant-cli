@@ -7,17 +7,17 @@ This tools process and enrichs data screpped from Yahoo Finance into a sets of C
 ### Requirements
 
 - `click`
-- `blessed` 
+- `blessed`
 - `pandas-datareader`
 
 ### PIP
-```console
+```bash
 pip install exploratium-quant
 ```
 
 ## Usage
 
-```console
+```
 Usage: quant-cli [OPTIONS]
 
 Options:
@@ -30,7 +30,7 @@ Options:
 ### Example
 
 By calling:
-```console
+```bash
 quant-cli -t "BTC-USD,SPY,ETH-USD,GME"
 ```
 
@@ -43,4 +43,3 @@ The tool will save a daily OHLC timeseries for the ticker along the following ge
 - **lower_bollinger_band**: Lower Bollinger Band
 - **daily_returns**: Daily returns
 - **sharpe**: Sharpe ratio
-
