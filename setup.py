@@ -1,10 +1,9 @@
 import setuptools
-from setuptools import setup
 
-with open("README.md", "r", encoding="utf-8") as fh:
+with open("README.md", encoding="utf-8") as fh:
     long_description = fh.read()
 
-with open("VERSION", "r", encoding="utf-8") as fh:
+with open("VERSION", encoding="utf-8") as fh:
     version = fh.read()
 
 setuptools.setup(
@@ -16,7 +15,9 @@ setuptools.setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/exploratium/quant-cli",
-    project_urls={"Bug Tracker": "https://github.com/exploratium/quant-cli/issues"},
+    project_urls={
+        "Bug Tracker": "https://github.com/exploratium/quant-cli/issues"
+    },
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",

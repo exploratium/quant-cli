@@ -20,8 +20,16 @@ tickers = [
 
 
 @click.command()
-@click.option("-t", "--tickers", default="SPY", type=str, help="Tickers to analyse.")
-@click.option("-o", "--out-dir", default="./data", type=click.Path(), help="Path to save results.")
+@click.option(
+    "-t", "--tickers", default="SPY", type=str, help="Tickers to analyse."
+)
+@click.option(
+    "-o",
+    "--out-dir",
+    default="./data",
+    type=click.Path(),
+    help="Path to save results.",
+)
 @click.option("--verbose/--quiet", default=False, help="Verbosity on/off.")
 def quant(tickers: str, out_dir: str, verbose: bool):
     """ETL library to download and pre-process financial data."""
@@ -29,7 +37,7 @@ def quant(tickers: str, out_dir: str, verbose: bool):
     term = blessed.Terminal()
     full_path = os.path.abspath(os.path.join(os.getcwd(), out_dir))
 
-    if (verbose):
+    if verbose:
         print(term.green("\n 🚀 Initializing."))
         print(term.blue("\n    output: {} \n".format(full_path)))
 
@@ -39,13 +47,13 @@ def quant(tickers: str, out_dir: str, verbose: bool):
 
         symbols = [sym.strip() for sym in tickers.split(",")]
 
-        if (verbose):
+        if verbose:
             print("    Following tickers are going to be processed: ", symbols)
 
         symbols = load_ticker_data(symbols)
         files = transform_ticker_data(symbols, full_path, 365)
 
-        if (verbose):
+        if verbose:
             for f in files:
                 click.echo("    saved: {}".format(f))
 

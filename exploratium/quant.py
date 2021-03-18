@@ -1,9 +1,8 @@
-import datetime as dt
 import numpy as np
 import pandas as pd
 
 
-class Quant(object):
+class Quant:
     @staticmethod
     def get_daily_returns(values: pd.Series) -> pd.Series:
         """Compute and return the daily return values."""
@@ -12,7 +11,9 @@ class Quant(object):
     @staticmethod
     def get_CAGR(values: pd.Series, traded_days: int = 252) -> pd.Series:
         """Calculates the Compound Annual Growth Rate."""
-        return ((1 + values.pct_change()).cumprod()) ** (traded_days / len(values)) - 1
+        return ((1 + values.pct_change()).cumprod()) ** (
+            traded_days / len(values)
+        ) - 1
 
     @staticmethod
     def get_volatility(values: pd.Series, traded_days: int = 252) -> pd.Series:
@@ -20,12 +21,16 @@ class Quant(object):
         return values.pct_change().std() * np.sqrt(traded_days)
 
     @staticmethod
-    def get_sharpe(values: pd.Series, traded_days: int = 252, rf: pd.Series = None) -> pd.Series:
+    def get_sharpe(
+        values: pd.Series, traded_days: int = 252, rf: pd.Series = None
+    ) -> pd.Series:
         """Sharpe ratio. RF = risk free rate. If not specified then rf=zero"""
         if not rf:
             rf = np.array([0] * len(values))
 
-        return (Quant.get_CAGR(values, traded_days) - rf) / Quant.get_volatility(values, traded_days)
+        return (
+            Quant.get_CAGR(values, traded_days) - rf
+        ) / Quant.get_volatility(values, traded_days)
 
     @staticmethod
     def get_rolling_mean(values: pd.Series, window: int = 20) -> pd.Series:

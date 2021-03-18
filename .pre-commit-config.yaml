@@ -6,7 +6,26 @@ repos:
   hooks:
   - id: end-of-file-fixer
   - id: trailing-whitespace
+  - id: mixed-line-ending
 - repo: https://github.com/psf/black
   rev: 19.3b0
   hooks:
   - id: black
+- repo: https://github.com/asottile/pyupgrade
+  rev: v2.7.2
+  hooks:
+  - id: pyupgrade
+    args: [--py36-plus]
+- repo: https://gitlab.com/pycqa/flake8
+  rev: 3.7.9
+  hooks:
+  - id: flake8
+- repo: local
+  hooks:
+    - id: bump2version-bash
+      name: bump2version-bash
+      entry: bash -c 'bump2version --allow-dirty patch VERSION --current-version `cat VERSION`'
+      language: system
+      types: [python]
+      pass_filenames: false
+      stages: [push]

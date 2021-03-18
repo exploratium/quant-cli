@@ -1,5 +1,3 @@
-import sys
-sys.path.append("..")
 from exploratium.quant import Quant as q
 from typing import List, Tuple
 import datetime as dt
@@ -30,7 +28,7 @@ def transform_ticker_data(
     tickers: List[pd.DataFrame],
     out_dir: str = "./data",
     traded_days: int = 252,
-    field: str = "Adj Close"
+    field: str = "Adj Close",
 ) -> List[str]:
     """Saves current enriched dataframes to disk.
 
@@ -45,15 +43,17 @@ def transform_ticker_data(
         df["ma30"] = q.get_rolling_mean(df[field], 30)
         df["ma90"] = q.get_rolling_mean(df[field], 90)
 
-        df["upper_bollinger_band"], df["lower_bollinger_band"] = q.get_bollinger_bands(
-            q.get_rolling_mean(df[field]), q.get_rolling_std(
-                df[field])
+        (
+            df["upper_bollinger_band"],
+            df["lower_bollinger_band"],
+        ) = q.get_bollinger_bands(
+            q.get_rolling_mean(df[field]), q.get_rolling_std(df[field])
         )
 
         df["daily_returns"] = q.get_daily_returns(df[field])
         df["sharpe"] = q.get_sharpe(df[field], traded_days)
 
-        path = "{}/{}.csv".format(out_dir, ticker)
+        path = f"{out_dir}/{ticker}.csv"
         df.to_csv(path)
         ticker_files.append(path)
 
