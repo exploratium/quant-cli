@@ -10,7 +10,7 @@ def load_ticker_data(
     start: str = (dt.datetime.today() + dt.timedelta(-365)).isoformat(),
     end: str = dt.datetime.today().isoformat(),
 ) -> List[Tuple[str, pd.DataFrame]]:
-    """Saves current enriched dataframes to disk.
+    """Load data from Yahoo and stores it in dataframes.
 
     Keyword arguments:
     tickers -- the symbols to save (default)
