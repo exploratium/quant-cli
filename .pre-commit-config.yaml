@@ -27,6 +27,6 @@ repos:
       name: bump2version-bash
       entry: bash -c 'bump2version --allow-dirty patch VERSION --current-version `cat VERSION`'
       language: system
-      types: [python]
       pass_filenames: false
+      always_run: true
       stages: [post-commit]
