@@ -1,5 +1,6 @@
 default_language_version:
   python: python3.6
+default_stages: [commit]
 repos:
 - repo: https://github.com/pre-commit/pre-commit-hooks
   rev: v2.3.0
@@ -28,4 +29,4 @@ repos:
       language: system
       types: [python]
       pass_filenames: false
-      stages: [push]
+      stages: [post-commit]
