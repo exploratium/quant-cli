@@ -34,7 +34,7 @@ By calling:
 quant-cli -t "BTC-USD,SPY,ETH-USD,GME"
 ```
 
-The tool will save a daily OHLC timeseries for the ticker along the following generated metrics:
+The tool will save a daily **OHLC** timeseries for the ticker along the following generated metrics:
 
 - **ma7**: 7 days moving average
 - **ma30**: 30 days moving average
